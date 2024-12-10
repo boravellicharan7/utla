@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Type Selection</title>
+    <style>
+ body {
+    font-family: "Roboto", sans-serif;
+    background-image: url("./images/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: rgba(119, 136, 153, 0.312)  ; 
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    /* box-shadow: 2px 2px 20px 8px rgba(70, 20, 20, 0.8); */
+    width: 100%;
+    max-width: 400px;
+    color: black;
+    opacity: 0.9;
+}
+
+h1 {
+    font-size: 24px;
+    color: black;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 18px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: black;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 10px;
+    width: 45%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: whitesmoke;
+    color: black;
+    transform: scale(1.05);
+}
+
+.button:active {
+    background-color: whitesmoke;
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .button {
+        width: 48%; /* Adjusted for better alignment on medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .button {
+        width: 100%; /* Full-width buttons for smaller devices */
+        margin: 5px 0;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Welcome! What brings you here?</h1>
+        <p>Are you a content creator or just browsing?</p>
+
+        <button class="button" id="creatorButton" onclick="redirectToCreatorPage()">I'm a Content Creator</button>
+        <button class="button" id="browsingButton" onclick="redirectToBrowsingPage()">I'm Just Browsing</button>
+    </div>
+
+    <script>
+
+        function redirectToCreatorPage() {
+            window.location.href = "content.html";
+        }
+        function redirectToBrowsingPage()
+        {
+            window.location.href="op.html";
+        }
+    </script>
+
+</body>
+
+</html>

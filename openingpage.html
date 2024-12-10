@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profusion</title>
+    
+   
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a, #3a3a3a); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Lora', serif;
+        }
+
+        h1 {
+            font-size: 100px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: #fff; 
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+        }
+
+        h1 span {
+            opacity: 0;
+            display: inline-block;
+            animation: reveal 1.5s forwards, transformEffect 2s infinite alternate;
+            transition: all 0.5s ease-in-out;
+        }
+
+        h1 span:nth-child(odd) {
+            animation-delay: 0.3s;
+        }
+
+        h1 span:nth-child(even) {
+            animation-delay: 0.5s;
+        }
+
+       
+        @keyframes reveal {
+            to {
+                opacity: 1;
+            }
+        }
+
+      
+        @keyframes transformEffect {
+            0% {
+                transform: scale(0.6);
+                color: #f1c40f; 
+            }
+            100% {
+                transform: scale(1);
+                color: #e0e0e0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1 id="title">
+        <span>P</span>
+        <span>r</span>
+        <span>o</span>
+        <span>f</span>
+        <span>u</span>
+        <span>s</span>
+        <span>i</span>
+        <span>o</span>
+        <span>n</span>
+    </h1>
+
+    <script>
+      
+        document.addEventListener("DOMContentLoaded", () => {
+            const title = document.getElementById("title");
+            const letters = title.querySelectorAll("span");
+            
+           
+            letters.forEach((letter, index) => {
+                letter.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+        setTimeout(() => {
+         
+            window.location.href = "login.html";
+        }, 5000);  
+    </script>
+
+</body>
+</html>

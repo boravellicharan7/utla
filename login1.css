@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
+
+body {
+    background-image: url("./images/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Truculenta', sans-serif;
+    font-weight: 700;
+    margin: 0;
+}
+
+#loginSection, #registerSection {
+    font-family: 'Truculenta', sans-serif;
+    font-weight: 700;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    background: rgba(119, 136, 153, 0.312); /* Lightslategrey with transparency */
+    color: black;
+    margin-top: 20px;
+}
+
+#loginForm, #registerForm {
+    padding: 20px;
+    text-align: center;
+    color: black;
+}
+
+input {
+    border: none;
+    border-radius: 10px;
+    height: 25px;
+    background: transparent;
+    color: black;
+    padding: 10px;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+input:hover {
+    transform: scale(1.02);
+}
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.password-container .eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.success {
+    color: green;
+    font-size: 14px;
+}
+
+button[type="submit"], #CreateAcc {
+    border-radius: 7px;
+    padding: 8px 20px;
+    color: black;
+    background-color: whitesmoke;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+button[type="submit"]:hover, #CreateAcc:hover {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.link a {
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.link a:hover {
+    color: darkblue;
+}
+
+@media (max-width: 768px) {
+    #loginSection, #registerSection {
+        margin-top: 30px;
+        padding: 20px;
+    }
+    
+    body {
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #loginSection, #registerSection {
+        margin-top: 20px;
+        width: 95%;
+    }
+    
+    button[type="submit"], #CreateAcc {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    input {
+        padding: 8px;
+    }
+}

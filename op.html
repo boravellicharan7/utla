@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data</title>
+    <style>
+        body {
+    background-image: url("./images/op.png"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: rgb(240, 230, 230); /* Subtle background color */
+}
+
+#dataSection {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 20px 8px black;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 50px;
+    opacity: 0.9;
+    background: transparent; /* Light transparent background */
+    color: black; /* Primary text color */
+}
+
+.user-card {
+    border: 1px solid rgb(70, 20, 20); /* Matching border color */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    color:black;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+    transform: scale(1.03); /* Subtle hover effect */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-card h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: black;
+}
+
+.user-card p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0, 102, 204); /* Blue link color */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: rgb(0, 51, 153); /* Darker blue on hover */
+}
+
+.file-preview {
+    margin-top: 10px;
+}
+
+.file-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.file-preview iframe {
+    width: 100%;
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+/* Media Queries */
+
+/* Medium devices (tablets, 768px and below) */
+@media (max-width: 768px) {
+    #dataSection {
+        max-width: 600px;
+        padding: 15px;
+    }
+
+    .user-card {
+        padding: 10px;
+    }
+
+    .user-card h3 {
+        font-size: 1.3em;
+    }
+
+    .user-card p {
+        font-size: 0.95em;
+    }
+
+    .file-preview iframe {
+        height: 350px;
+    }
+}
+
+/* Small devices (mobile phones, 500px and below) */
+@media (max-width: 500px) {
+    #dataSection {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .user-card {
+        padding: 8px;
+    }
+
+    .user-card h3 {
+        font-size: 1.2em;
+    }
+
+    .user-card p {
+        font-size: 0.9em;
+    }
+
+    a {
+        font-size: 0.9em;
+    }
+
+    .file-preview iframe {
+        height: 300px;
+    }
+}
+
+/* Extra small devices (400px and below) */
+@media (max-width: 400px) {
+    #dataSection {
+        padding: 8px;
+    }
+
+    .user-card {
+        margin-bottom: 10px;
+    }
+
+    .user-card h3 {
+        font-size: 1em;
+    }
+
+    .user-card p {
+        font-size: 0.8em;
+    }
+
+    .file-preview iframe {
+        height: 250px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div id="dataSection">
+        <h1>User Data</h1>
+        <div id="userDataDisplay"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script>
+       
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHEcml3aP5X8H6iY3qNnjmoIYKE6WZ4Cc",
+            authDomain: "profusion-55ee5.firebaseapp.com",
+            projectId: "profusion-55ee5",
+            storageBucket: "profusion-55ee5.appspot.com",
+            messagingSenderId: "705597166854",
+            appId: "1:705597166854:web:f714caa1b9141a93353a87"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+      
+        async function displayUserData() {
+            const displayDiv = document.getElementById('userDataDisplay');
+            displayDiv.innerHTML = "";
+
+            try {
+               
+                const querySnapshot = await db.collection("contents").get();
+                const firebaseData = querySnapshot.docs.map(doc => doc.data());
+
+               
+                const localFiles = JSON.parse(localStorage.getItem('uploadedFiles')) || [];
+
+              
+                firebaseData.forEach((data, index) => {
+                    const userCard = document.createElement('div');
+                    userCard.className = 'user-card';
+
+                  
+                    const nameElem = document.createElement('h3');
+                    nameElem.textContent = `Name: ${data.creatorName}`;
+
+                    const thoughtsElem = document.createElement('p');
+                    thoughtsElem.textContent = `Thoughts: ${data.thoughts}`;
+
+                    const timestampElem = document.createElement('small');
+                    timestampElem.textContent = `Posted on: ${new Date(data.timestamp).toLocaleString()}`;
+
+                    userCard.appendChild(nameElem);
+                    userCard.appendChild(thoughtsElem);
+                    userCard.appendChild(timestampElem);
+
+                   
+                    const fileData = localFiles[index];
+                    if (fileData) {
+                        const filePreviewDiv = document.createElement('div');
+                        filePreviewDiv.className = 'file-preview';
+
+                       
+                        const fileExtension = fileData.fileName.split('.').pop().toLowerCase();
+                        if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
+                         
+                            const imgElement = document.createElement('img');
+                            imgElement.src = fileData.fileData;
+                            filePreviewDiv.appendChild(imgElement);
+                        } else if (fileExtension === 'pdf') {
+                         
+                            const iframeElement = document.createElement('iframe');
+                            iframeElement.src = fileData.fileData;
+                            filePreviewDiv.appendChild(iframeElement);
+                        } else {
+                           
+                            const fileLink = document.createElement('a');
+                            fileLink.href = fileData.fileData;
+                            fileLink.textContent = `Download File: ${fileData.fileName}`;
+                            fileLink.download = fileData.fileName;
+                            filePreviewDiv.appendChild(fileLink);
+                        }
+
+                        userCard.appendChild(filePreviewDiv);
+                    }
+
+                    displayDiv.appendChild(userCard);
+                });
+
+                if (firebaseData.length === 0) {
+                    const noDataMessage = document.createElement('p');
+                    noDataMessage.textContent = "No user data available!";
+                    displayDiv.appendChild(noDataMessage);
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+                alert("Failed to fetch user data. Please try again.");
+            }
+        }
+
+
+        
+        displayUserData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
+
+body {
+    background-image: url("images/Green\ Modern\ Beach\ View\ Desktop\ Wallpaper.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Truculenta', sans-serif;
+    font-weight: 700;
+    /* background-color:  #858D71; */
+    margin: 0;
+}
+
+
+#loginSection {
+
+    font-family: 'Truculenta', sans-serif;
+    font-weight: 700;
+    padding: 30px;
+    border-radius: 10px;
+    /* box-shadow: 2px 2px 20px 8px #0B2C3D; */
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin-left: 680px;
+    /* margin-top: 20px; */
+    /* opacity: 0.5; */
+    background: lightslategrey;
+    opacity: 0.5;
+    color: black;
+}
+
+input {
+    color: black;
+}
+
+#loginForm {
+    padding: 20px;
+    text-align: left;
+    color: black;
+    text-align: center;
+    font-family: 'Truculenta', sans-serif;
+}
+
+#loginEmail,
+#loginPassword {
+    border: none;
+    border-radius: 10px;
+    height: 25px;
+    transition: transform 0.3s ease-in-out;
+    background: transparent;
+    color: black;
+    padding: 10px;
+    /* color: #858D71; */
+    /* border-color: black; */
+    /* border: black; */
+    width: 100%;
+}
+
+#loginEmail:hover,
+#loginPassword:hover {
+    transform: scale(1.02);
+    background: transparent;
+}
+
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    /* border-color: black; */
+}
+
+.password-container .eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.success {
+    color: green;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+#loginForm button[type="submit"] {
+    border-radius: 7px;
+    padding: 8px 20px;
+    color: black;
+    /* background-color: ; */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+#loginForm button[type="submit"]:hover {
+    background-color: black;
+    color: whitesmoke;
+}
+
+
+.link a {
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.link a:hover {
+    color: darkblue;
+}
+
+
+@media (max-width: 400px) {
+    #loginSection {
+        margin-top: 50px;
+        width: 90%;
+    }
+}
+
+
+
+#registerSection {
+    padding: 20px;
+    border-radius: 10px;
+    /* box-shadow: 2px 2px 20px 8px rgb(8, 8, 8); */
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin-left: 680px;
+    margin-top: 50px;
+    font-family: 'Truculenta', sans-serif;
+    font-weight: 700;
+    /* font-weight:700; */
+    opacity: 0.7;
+    background-color: lightslategrey;
+    color: black;
+}
+
+#registerForm {
+    padding: 20px;
+    font-family: 'Truculenta', sans-serif;
+    font-weight: 700;
+    text-align: left;
+    color: black;
+    text-align: center;
+}
+
+#registerEmail,
+#registerPassword,
+#confirmPassword {
+    border: none;
+    border-radius: 10px;
+    height: 25px;
+    transition: transform 0.3s ease-in-out;
+    background: transparent;
+    /* color: rgba(245, 245, 245, 0.687); */
+    padding: 10px;
+    color: black;
+    width: 100%;
+}
+
+#registerEmail:hover,
+#registerPassword:hover,
+#confirmPassword:hover {
+    transform: scale(1.02);
+    background: transparent;
+}
+
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.password-container .eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.success {
+    color: green;
+    font-size: 14px;
+    text-align: center;
+}
+
+#CreateAcc {
+    border-radius: 7px;
+    padding: 8px 20px;
+    color: black;
+    background-color: whitesmoke;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+#CreateAcc:hover {
+    background-color: whitesmoke;
+}
+
+.link a {
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.link a:hover {
+    color: darkblue;
+}
+
+
+@media (max-width: 400px) {
+    #registerSection {
+        margin-top: 50px;
+        width: 90%;
+    }
+}

@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Content</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('your-background-image.jpg'); /* Add your image */
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background 0.5s ease;
+}
+
+h2 {
+    color: black;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+p {
+    color: black;
+    text-align: center;
+}
+
+#content-creator-tab {
+    background: rgba(119, 136, 153, 0.312); /* Darker blur effect */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: black; /* Ensures text contrast */
+}
+
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+input[type="text"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.2);
+    color: black;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+input[type="file"]:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+#button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #3498db; 
+    color: black;
+    font-size: 14px;
+    cursor: pointer;
+    width: 30%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#button:hover {
+    background: #2980b9; /* Hover color */
+    transform: scale(1.05);
+}
+
+#curiosity-button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    background: transparent;
+    color: black;
+    /* background-color: #1abc9c;  */
+    border: none;
+    /* border-radius: 5px; */
+    cursor: pointer;
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); */
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+}
+
+#curiosity-button:hover {
+    background-color: black;
+    color: whitesmoke; 
+    transform: scale(1.05);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    #content-creator-tab {
+        width: 80%;
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    button,
+    #curiosity-button {
+        font-size: 14px;
+    }
+
+    input[type="text"],
+    textarea {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #content-creator-tab {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    button,
+    #curiosity-button {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    input[type="text"],
+    textarea {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    #content-creator-tab {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    button,
+    #curiosity-button {
+        padding: 6px;
+        font-size: 10px;
+    }
+
+    input[type="text"],
+    textarea {
+        font-size: 10px;
+        padding: 6px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div id="content-creator-tab">
+        <h2>Hey, <span id="userNameDisplay">User</span>!</h2>
+        <p>Share your thoughts, ideas, or files with the community.</p>
+        <div class="upload-section">
+            <input type="text" id="creatorName" placeholder="Enter your name" oninput="updateUserName()" />
+            <textarea id="creatorThoughts" placeholder="Write your thoughts here..." rows="3" oninput="autoExpand(this)"></textarea>
+            <input type="file" id="contentFile" accept=".pdf,.png,.jpg,.jpeg,.docx" />
+            <button id="button" onclick="uploadContent()">Upload Content</button>
+        </div>
+        <button id="curiosity-button" onclick="redirectToContentPage()">Are you curious what others have shared?</button>
+    </div>
+
+    <script>
+      
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+       
+        function setBackground(zone) {
+            const body = document.body;
+
+            const zoneBackgrounds = {
+                Tech: "url('images/technology.jpg')",
+                Health: "url('images/healthfitness.jpg')",
+                Travel: "url('images/travelling.jpg')",
+                Writer: "url('images/writer.jpg')",
+                Food: "url('images/cooking.jpg')",
+                Education: "url('images/education.jpg')",
+                Default: "url('images/workingtogether.jpg')"
+            };
+
+            body.style.backgroundImage = zoneBackgrounds[zone] || zoneBackgrounds.Default;
+        }
+
+        
+        const selectedZone = getQueryParam('zone');
+        setBackground(selectedZone);
+
+       
+        function redirectToContentPage() {
+            window.location.href = 'op.html';
+        }
+    </script>
+      
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script> 
+
+     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+   
+   <script src="firebasecode22.js"></script>
+  
+</body>
+</html>
